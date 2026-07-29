@@ -1,8 +1,9 @@
 {
-  "name": "storekeep",
+  "name": "outside",
   "version": "2.0.0",
-  "description": "broilerplate for WDD 330 storekeep project",
+  "description": "broilerplate for my WDD330 storekeep project",
   "main": "main.js",
+   "homepage": "https://Damilolaadefenwa.github.io/storekeepWdd330",
   "scripts": {
     "start": "vite",
     "build": "vite build --emptyOutDir",
