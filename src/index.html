@@ -9,7 +9,10 @@
       property="og:description"
       content="A decoupled Single Page Application (SPA) designed as easy to use dashboard for managing Shopify store datasets."
     />
-    <meta property="og:image" content="" />
+    <meta
+      property="og:image"
+      content="https://github.com/Damilolaadefenwa/storeKeepwdd330/blob/main/src/public/images/socialmediapreviewimg.webp"
+    />
     <meta
       property="og:url"
       content="https://damilolaadefenwa.github.io/storeKeepwdd330"
@@ -48,13 +51,20 @@
       <!-- HEADER -->
       <header id="header" class="main-header">
         <div class="header-left">
-          <div class="brand-logo"><img src="/images/storeKeepLogo.svg" alt="brand image for logo" /></div>
-          <div class="brand-name"><a href="/index.html">StoreKeep</a></div>
+          <div class="brand-logo">
+            <img src="/images/storeKeepLogo.svg" alt="brand image for logo" />
+          </div>
+          <div class="brand-name"><a href="index.html">StoreKeep</a></div>
         </div>
         <div class="header-right">
-          <a href="/index.html" class="nav-link" id="home-link">Homepage</a>
+          <a href="index.html" class="nav-link" id="home-link">Homepage</a>
           <div class="notification-container" id="notification-bell">
-            <div class="bell-icon-placeholder"><img src="/images/notificationbellicon.svg" alt="notify bell image" /></div>
+            <div class="notification-bell">
+              <img
+                src="/images/notificationbellicon.svg"
+                alt="notification bell image"
+              />
+            </div>
           </div>
           <button id="mobile-menu-btn" aria-label="Toggle Menu">☰</button>
         </div>
@@ -64,10 +74,14 @@
       <nav id="main-sidebar">
         <ul class="sidebar-nav" id="nav-list">
           <li class="sidebar-item">
-            <a href="orders.html" class="sidebar-link" id="nav-orders">Orders</a>
+            <a href="orders.html" class="sidebar-link" id="nav-orders"
+              >Orders</a
+            >
           </li>
           <li class="sidebar-item">
-            <a href="products.html" class="sidebar-link" id="nav-product">Product</a>
+            <a href="products.html" class="sidebar-link" id="nav-product"
+              >Products</a
+            >
           </li>
           <li class="sidebar-item">
             <a href="siteplan.html" class="sidebar-link" id="nav-siteplan"
@@ -81,12 +95,15 @@
       <main id="main-content">
         <!-- HERO SECTION -->
         <section id="hero-section">
-          <div class="hero-banner"><img src="/images/herobanner.webp" alt="The banner image"/></div>
+          <div class="hero-banner">
+            <img src="/images/herobanner.webp" alt="The hero banner image" />
+          </div>
           <div class="hero-overlay" id="hero-welcome-box">
-            <div id="current-date">Fetching Date...</div>
-            <div class="welcome-text" id="welcome-message">
-              Welcome back! Here is your daily summary.
-            </div>
+            <h2 id="current-date">Fetching Date......</h2>
+            <p class="welcome-text">
+              Welcome back! <br />
+              Here is your daily summary.
+            </p>
           </div>
         </section>
 
@@ -97,49 +114,108 @@
             <!-- Card 1 -->
             <div class="widget-card card-1" id="widget-inventory">
               <h3 class="widget-title">Inventory Stock Summary</h3>
+              <div class="widget-image-container">
+                <a href="products.html"
+                  ><img
+                    src="/images/inventorySummary.png"
+                    alt="inventory for summary"
+                /></a>
+              </div>
               <div class="widget-content">
-                <img src="/images/inventorySummary.png" alt="inventory summary image"/>
-                Loading inventory data...
+                <p>Total Stocks:</p>
+                <span class="product-count"></span>
+                <img
+                  src="/images/notificationbellicon.svg"
+                  alt="Sum Total of product notification"
+                />
               </div>
             </div>
 
             <!-- Card 2 -->
             <div class="widget-card card-2" id="widget-sales">
               <h3 class="widget-title">Sales/Order Summary</h3>
+              <div class="widget-image-container">
+                <a href="orders.html"
+                  ><img
+                    src="/images/salesSummary.jpg"
+                    alt="sales summary image"
+                /></a>
+              </div>
               <div class="widget-content">
-                <img src="/images/salesSummary.jpg" alt="sales summary image"/>
-                Loading order data...
+                <p>Total Sales:</p>
+                <span class="order-count"></span>
+                <img
+                  src="/images/notificationbellicon.svg"
+                  alt="Sum Total of product notification"
+                />
               </div>
             </div>
 
             <!-- Card 3 -->
             <div class="widget-card card-3" id="widget-shipping-weather">
               <h3 class="widget-title">Shipping & Weather Insight</h3>
-              <div class="widget-content">
-                <img src="/images/weatherInsight.jpg" alt="weather insight image"/>
-                Loading open-meteo data...
+              <div class="widget-image-container">
+                <a href="weather.html"
+                  ><img
+                    src="/images/weatherInsight.jpg"
+                    alt="weather insight image"
+                /></a>
+              </div>
+              <div class="weather-text-content">
+                <p class="location" id="current-location">
+                  loading Store location...
+                </p>
+                <p class="temperature" id="current-temperature">
+                  loading --°F...
+                </p>
+                <p class="description" id="current-high">Loading weather...</p>
+                <p class="description" id="current-low">Loading weather...</p>
               </div>
             </div>
           </div>
         </section>
       </main>
 
-      <!-- FOOTER -->
       <footer id="footer" class="main-footer">
         <div class="footer-left">
-          <a href="https://github.com/Damilolaadefenwa" target="_blank" class="footer-link" id="github-link"
-            >View Project on GitHub</a
+          <a
+            href="https://github.com/Damilolaadefenwa"
+            target="_blank"
+            class="footer-link"
+            id="github-link"
           >
+            View Project on GitHub
+          </a>
         </div>
         <div class="footer-middle">
           &copy; <span id="current-year"></span> StoreKeep Dashboard. All rights
           reserved.
         </div>
-        <div class="footer-right social-icons-container" id="social-links">
-          <a href="https://x.com/i/flow/login" target="_blank" aria-label="Twitter-X" class="social-icon"><img src="/images/twitter-x.svg"
-            alt="twitter-X Logo" width="24" height="24"></a>
-          <a href="https://www.linkedin.com/in/damilolamercy17/" target="_blank" aria-label="LinkedIn" class="social-icon"><img src="/images/linkedin.svg"
-            alt="LinkedIn Logo" width="24" height="24"></a></a>
+        <div class="footer-right platform-badges" id="connect-badges">
+          <a
+            href="https://x.com/i/flow/login"
+            target="_blank"
+            aria-label="Twitter-X"
+            class="platform-icon"
+            ><img
+              src="/images/twitter-x.svg"
+              alt="twitter-X Logo"
+              width="24"
+              height="24"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/damilolamercy17/"
+            target="_blank"
+            aria-label="LinkedIn"
+            class="platform-icon"
+            ><img
+              src="/images/linkedin.svg"
+              alt="LinkedIn Logo"
+              width="24"
+              height="24"
+            />
+          </a>
         </div>
       </footer>
     </div>

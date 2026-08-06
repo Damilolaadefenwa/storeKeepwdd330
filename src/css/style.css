@@ -34,6 +34,22 @@ a {
   color: inherit;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Removing weird bottom spacing under images */
+  margin-bottom: 1.2rem;
+}
+
+h2,
+h3 {
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  font-family: "inter", sans-serif;
+}
+
 /* =====================================
   MAIN LAYOUT (CSS GRID)
 ===================================== */
@@ -43,7 +59,7 @@ a {
     "header header"
     "sidebar main"
     "footer footer";
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 260px minmax(0, 1fr); /* minmax prevents main from causing overflow */
   grid-template-rows: 70px 1fr auto;
   min-height: 100vh;
 }
@@ -73,14 +89,12 @@ HEADER (Using Native CSS Nesting)
       display: flex;
       align-items: center;
       justify-content: center;
-      /* color: var(--white);
-      font-weight: bold; */
-      /* overflow: hidden; */
     }
 
     .brand-logo img {
       width: 60px;
       height: 60px;
+      object-fit: contain; /*Ensuring logo fits inside the 60x60 box */
     }
 
     .brand-name {
@@ -104,7 +118,8 @@ HEADER (Using Native CSS Nesting)
     gap: 2rem;
 
     .nav-link {
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 1.5rem;
       color: var(--graphite);
       transition: color var(--transition-speed);
 
@@ -116,26 +131,17 @@ HEADER (Using Native CSS Nesting)
     .notification-container {
       position: relative;
       cursor: pointer;
+      display: flex; /* Centering the icon */
+      align-items: center;
 
-      .bell-icon-placeholder {
+      .notification-bell img {
         width: 24px;
         height: 24px;
-        /* background-color: var(--graphite);
-        clip-path: polygon(
-          50% 0%,
-          80% 20%,
-          80% 80%,
-          100% 100%,
-          0 100%,
-          20% 80%,
-          20% 20%
-        ); */
         transition: transform var(--transition-speed);
       }
 
-      &:hover .bell-icon-placeholder {
+      &:hover .notification-bell img {
         transform: scale(1.1) rotate(5deg);
-        background-color: var(--tiger-orange);
       }
     }
 
@@ -169,7 +175,8 @@ HEADER (Using Native CSS Nesting)
       .sidebar-link {
         display: block;
         padding: 1.2rem 2rem;
-        font-weight: 600;
+        font-weight: 700;
+        font-size: 1.4rem;
         color: var(--deep-space-blue);
         transition: all var(--transition-speed);
 
@@ -189,6 +196,9 @@ HEADER (Using Native CSS Nesting)
 #main-content {
   grid-area: main;
   padding: 2rem 3rem;
+  width: 100%; /*Ensuring the content area doesn't force a horizontal scroll*/
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* ==============================
@@ -198,7 +208,6 @@ HERO SECTION
   position: relative;
   width: 100%;
   height: 300px;
-  /* background-color: var(--deep-space-blue);  */
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 4rem;
@@ -207,19 +216,13 @@ HERO SECTION
   .hero-banner {
     width: 100%;
     height: 100%;
-    /* background: linear-gradient(
-      135deg,
-      var(--deep-space-blue) 0%,
-      #3a506b 100%
-    ); */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* color: rgba(255, 255, 255, 0.2);
-    font-size: 2rem; */
   }
-  
-
+  .hero-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /*making image fill the area without distortion*/
+    object-position: center; /*Keeping the most important part visible */
+  }
   .hero-overlay {
     position: absolute;
     top: 0;
@@ -233,8 +236,8 @@ HERO SECTION
     flex-direction: column;
     justify-content: center;
 
-    #current-date {
-      font-size: 0.9rem;
+    #current-date h2 {
+      font-size: 0.99rem;
       font-weight: bold;
       text-transform: uppercase;
       color: var(--graphite);
@@ -242,12 +245,14 @@ HERO SECTION
       letter-spacing: 1px;
     }
 
-    .welcome-text {
+    .welcome-text,
+    p {
       font-family: "inter", sans-serif;
-      font-size: 1.3rem;
-      font-weight: 400;
+      font-size: 1rem;
+      font-weight: 500;
       color: var(--deep-space-blue);
       line-height: 1.1;
+      margin-top: 0.5rem;
     }
   }
 }
@@ -270,10 +275,10 @@ CATEGORIES / WIDGETS SECTION
 
     .widget-card {
       flex: 1;
+      min-width: 0; /* Important flexbox fix to prevent overflow */
       background-color: var(--white);
       border-radius: 12px;
-      padding: 2rem;
-      min-height: 200px;
+      padding: 1.5rem;
       box-shadow: var(--shadow-light);
       border-top: 4px solid transparent;
       transition:
@@ -282,7 +287,6 @@ CATEGORIES / WIDGETS SECTION
         border-color var(--transition-speed);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
 
       /* Advanced Hover Effect */
       &:hover {
@@ -292,21 +296,72 @@ CATEGORIES / WIDGETS SECTION
       }
 
       .widget-title {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         font-weight: 600;
         color: var(--graphite);
+        margin-bottom: 1rem;
       }
 
-      .widget-content {
-        color: #888;
-        font-size: 0.9rem;
-        margin-top: 1rem;
+      & > a {
+        display: block;
+        width: 100%;
+        height: 150px; /* Fixed height for consistency */
+        overflow: hidden;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+
+      & > a > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Filling the 150px height nicely */
+      }
+
+      .widget-content,
+      .weather-text-content {
+        color: var(--graphite);
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap; /* Allowing text to wrap if it gets too long */
+        gap: 0.5rem;
+
+        p {
+          margin: 0;
+        }
+
+        /* span {
+          font-weight: bold;
+          font-size: 1.1rem;
+          color: var(--deep-space-blue);
+        } */
+
+        img {
+          width: 24px;
+          height: 24px;
+          /*margin-left: auto;  Pushes the icon to the right */
+        }
+      }
+
+      .weather-text-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+
+        .location {
+          font-weight: bold;
+          color: var(--deep-space-blue);
+        }
+        .temperature {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: var(--tiger-orange);
+        }
       }
     }
-
     /* Widget Layout: Staggered "rise and fall" effect */
     .card-2 {
-      margin-top: 4rem; /* Pushing the middle card downward */
+      margin-top: 3rem; /* Pushing the middle card downward */
     }
   }
 }
@@ -323,44 +378,73 @@ FOOTER
   align-items: center;
   border-top: 1px solid #e1e5e5;
   color: var(--graphite);
-  font-size: 0.9rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 100%;
+}
 
-  .footer-link {
-    color: var(--deep-space-blue);
-    font-weight: bold;
-    transition: color var(--transition-speed);
+/* Force exactly equal widths so the middle is always dead-center */
+.footer-left,
+.footer-middle,
+.footer-right {
+  flex: 1 1 33.333%;
+  min-width: 0; /* Prevents long text from breaking the layout */
+}
 
-    &:hover {
-      color: var(--tiger-orange);
-    }
-  }
+/* Align contents within their 33% invisible boxes */
+.footer-left {
+  display: flex;
+  justify-content: flex-start;
+}
 
-  .social-icons-container {
-    display: flex;
-    gap: 1rem;
+.footer-middle {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+}
 
-    .social-icon {
-      width: 30px;
-      height: 30px;
-      background-color: var(--platinum);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition:
-        background-color var(--transition-speed),
-        color var(--transition-speed);
+/* Anchor styling */
+.footer-left .footer-link {
+  color: var(--deep-space-blue);
+  transition: color var(--transition-speed);
+}
 
-      &:hover {
-        background-color: var(--deep-space-blue);
-        color: var(--white);
-      }
-      & img {
-        width: 32px;
-        height: 32px;
-      }
-    }
-  }
+.footer-left .footer-link:hover {
+  color: var(--tiger-orange);
+}
+
+/* Fixed Social Icons */
+.footer-right.platform-badges {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.footer-right .platform-icon {
+  width: 36px;
+  height: 36px;
+  background-color: var(--platinum);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Prevents the icon from disappearing */
+  transition:
+    background-color var(--transition-speed),
+    transform var(--transition-speed);
+}
+
+.footer-right .platform-icon:hover {
+  background-color: var(--tiger-orange);
+  transform: translateY(-3px);
+}
+
+/* Force image dimensions so they don't flash or stack */
+.footer-right .platform-icon img {
+  width: 30px !important;
+  height: 30px !important;
+  display: block;
 }
 
 /* ============================
@@ -521,7 +605,7 @@ SITEPLAN PAGE STYLING
 /* ================================
   MOBILE RESPONSIVENESS
 ================================= */
-@media (max-width: 606px) {
+@media (max-width: 900px) {
   #app-container {
     grid-template-areas:
       "header"
@@ -532,7 +616,7 @@ SITEPLAN PAGE STYLING
 
   /* Header adjustments */
   .main-header .header-right #mobile-menu-btn {
-    display: block; /* Show hamburger button */
+    display: block; /* Showing hamburger button */
   }
 
   .main-header .header-right .nav-link {
@@ -565,9 +649,11 @@ SITEPLAN PAGE STYLING
     height: auto;
     min-height: 350px;
 
-    .hero-image-placeholder {
+    .hero-banner img {
       position: absolute;
       z-index: 1;
+      width: 100%;
+      height: 100%;
     }
 
     .hero-overlay {
@@ -583,24 +669,32 @@ SITEPLAN PAGE STYLING
 
   /* Widget adjustments */
   #categories-section .widgets-container {
-    flex-direction: column;
+    flex-direction: column; /*Stacks the cards vertically*/
     gap: 1.5rem;
 
     .card-2 {
       margin-top: 0; /* Removing stagger on mobile for clean vertical flow */
+    }
+
+    .widget-card {
+      width: 100%; /* Ensures cards take full width on mobile */
     }
   }
 
   /* Footer adjustments */
   .main-footer {
     flex-direction: column;
-    gap: 1rem;
-    text-align: center;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
-  .social-icon img {
-    width: 24px;
-    height: 24px;
+  .footer-left,
+  .footer-middle,
+  .footer-right {
+    flex: auto;
+    width: 100%; /* Take full width on mobile */
+    justify-content: center; /* Center everything */
+    white-space: normal; /* Allow text to wrap */
   }
 
   /* Siteplan Mobile Styling */
