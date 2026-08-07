@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- Scripts -->
-    <script src="js/" defer></script>
+    <script src="./js/main.js" type="module"></script>
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" />
@@ -44,9 +44,10 @@
     />
   </head>
   <body>
-    <header id="header"></header>
-    <main id="main-content" class="siteplan-content">
-      <h1 class="siteplan-header">STOREKEEP: Site Plan Document</h1>
+    <header id="header" class="main-header"></header>
+
+    <main class="siteplan-content">
+      <h1 class="siteplan-header">Site Plan Document</h1>
 
       <section class="siteplan-section" id="site-purpose">
         <h2>1. Site Purpose</h2>
@@ -219,6 +220,7 @@
         </div>
       </section>
     </main>
-    <footer id="footer"></footer>
+
+    <footer id="footer" class="main-footer"></footer>
   </body>
 </html>

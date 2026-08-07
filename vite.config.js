@@ -1,9 +1,15 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 
-export default defineConfig({
+// We pass { command } to check if we are running 'dev' or 'build'
+export default defineConfig(({ command }) => ({
   root: "src/",
-  base: "/storeKeepwdd330/",
+
+  // Adjusted to look inside the src/ directory
+  publicDir: "public",
+
+  // Using root '/' for local dev, and your repo name for the GitHub build!
+  base: command === "build" ? "/storeKeepwdd330/" : "/",
 
   build: {
     outDir: "../dist",
@@ -17,4 +23,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

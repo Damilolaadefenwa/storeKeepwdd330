@@ -76,6 +76,7 @@ HEADER (Using Native CSS Nesting)
   padding: 0 2rem;
   box-shadow: var(--shadow-light);
   z-index: 10;
+  min-height: 70px; /* ensuring consistent header height across */
 
   .header-left {
     display: flex;
@@ -296,7 +297,7 @@ CATEGORIES / WIDGETS SECTION
       }
 
       .widget-title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: 600;
         color: var(--graphite);
         margin-bottom: 1rem;
@@ -320,7 +321,7 @@ CATEGORIES / WIDGETS SECTION
       .widget-content,
       .weather-text-content {
         color: var(--graphite);
-        font-size: 1.5rem;
+        font-size: 1rem;
         display: flex;
         align-items: center;
         flex-wrap: wrap; /* Allowing text to wrap if it gets too long */

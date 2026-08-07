@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- Scripts -->
-    <!-- <script src="js/main.js" defer></script> -->
+    <script src="./js/main.js" type="module"></script>
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" />
@@ -49,26 +49,7 @@
   <body>
     <div id="app-container">
       <!-- HEADER -->
-      <header id="header" class="main-header">
-        <div class="header-left">
-          <div class="brand-logo">
-            <img src="images/storeKeepLogo.svg" alt="brand image for logo" />
-          </div>
-          <div class="brand-name"><a href="index.html">StoreKeep</a></div>
-        </div>
-        <div class="header-right">
-          <a href="index.html" class="nav-link" id="home-link">Homepage</a>
-          <div class="notification-container" id="notification-bell">
-            <div class="notification-bell">
-              <img
-                src="images/notificationbellicon.svg"
-                alt="notification bell image"
-              />
-            </div>
-          </div>
-          <button id="mobile-menu-btn" aria-label="Toggle Menu">☰</button>
-        </div>
-      </header>
+      <header id="header" class="main-header"></header>
 
       <!-- SIDEBAR -->
       <nav id="main-sidebar">
@@ -174,48 +155,7 @@
         </section>
       </main>
 
-      <footer id="footer" class="main-footer">
-        <div class="footer-left">
-          <a
-            href="https://github.com/Damilolaadefenwa"
-            target="_blank"
-            class="footer-link"
-            id="github-link"
-          >
-            View Project on GitHub
-          </a>
-        </div>
-        <div class="footer-middle">
-          &copy; <span id="current-year"></span> StoreKeep Dashboard. All rights
-          reserved.
-        </div>
-        <div class="footer-right platform-badges" id="connect-badges">
-          <a
-            href="https://x.com/i/flow/login"
-            target="_blank"
-            aria-label="Twitter-X"
-            class="platform-icon"
-            ><img
-              src="images/twitter-x.svg"
-              alt="twitter-X Logo"
-              width="24"
-              height="24"
-            />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/damilolamercy17/"
-            target="_blank"
-            aria-label="LinkedIn"
-            class="platform-icon"
-            ><img
-              src="images/linkedin.svg"
-              alt="LinkedIn Logo"
-              width="24"
-              height="24"
-            />
-          </a>
-        </div>
-      </footer>
+      <footer id="footer" class="main-footer"></footer>
     </div>
   </body>
 </html>
