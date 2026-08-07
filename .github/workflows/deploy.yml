@@ -2,8 +2,8 @@ name: Deploy StoreKeep to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # Runs automatically when you push to main
-  workflow_dispatch: # Allows you to manually trigger it via GitHub if needed
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -16,6 +16,9 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages # Highlighted Fix: Tells GitHub Actions where to authorize deployment
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code
@@ -24,14 +27,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22" # Updated to Node 22 to eliminate line 1 deprecation warning
           cache: "npm"
 
       - name: Install Dependencies
         run: npm ci
 
       - name: Compile Production Build
-        run: npm run build # Reads your /storeKeepwdd330/ base URL from vite.config.js
+        run: npm run build
 
       - name: Setup Pages Engine
         uses: actions/configure-pages@v4
@@ -39,7 +42,7 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./dist # Deploys my built index.html from dist, ignoring the root README
 
       - name: Deploy to Live Site
         id: deployment
