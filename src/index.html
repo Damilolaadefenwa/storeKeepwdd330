@@ -99,16 +99,33 @@
                 <a href="products.html"
                   ><img
                     src="images/inventorySummary.png"
-                    alt="inventory for summary"
+                    alt="inventory summary image"
                 /></a>
               </div>
               <div class="widget-content">
-                <p>Total Stocks:</p>
-                <span class="product-count"></span>
-                <img
-                  src="images/notificationbellicon.svg"
-                  alt="Sum Total of product notification"
-                />
+                <p>
+                  Total Stocks:
+                  <strong id="homepage-product-count" class="product-count"
+                    >0</strong
+                  >
+                </p>
+                <!--Wrapping the bell and badge together so they stay attached -->
+                <div
+                  class="bell-wrapper"
+                  id="inventory-bell-trigger"
+                  role="button"
+                  aria-label="View Inventory Alerts"
+                  tabindex="0"
+                >
+                  <img
+                    id="inventory-bell-icon"
+                    src="images/notificationbellicon.svg"
+                    alt="Inventory Notification"
+                  />
+                  <span id="inventory-alert-badge" class="alert-badge hidden"
+                    >0</span
+                  >
+                </div>
               </div>
             </div>
 
@@ -157,5 +174,13 @@
 
       <footer id="footer" class="main-footer"></footer>
     </div>
+    <!-- Low Stock Dialog Modal -->
+    <dialog id="low-stock-modal" class="custom-modal">
+      <div class="modal-content">
+        <h3>Low Stock / Out of Stock Alerts</h3>
+        <ul id="low-stock-list" class="modal-list"></ul>
+        <button id="close-modal-btn" class="modal-close-btn">Close</button>
+      </div>
+    </dialog>
   </body>
 </html>

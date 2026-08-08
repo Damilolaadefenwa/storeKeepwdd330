@@ -321,26 +321,20 @@ CATEGORIES / WIDGETS SECTION
       .widget-content,
       .weather-text-content {
         color: var(--graphite);
-        font-size: 1rem;
+        font-size: 1.1rem;
         display: flex;
         align-items: center;
         flex-wrap: wrap; /* Allowing text to wrap if it gets too long */
         gap: 0.5rem;
+        margin-top: 1.2rem;
 
         p {
           margin: 0;
         }
 
-        /* span {
-          font-weight: bold;
-          font-size: 1.1rem;
-          color: var(--deep-space-blue);
-        } */
-
         img {
           width: 24px;
           height: 24px;
-          /*margin-left: auto;  Pushes the icon to the right */
         }
       }
 
@@ -353,10 +347,11 @@ CATEGORIES / WIDGETS SECTION
           font-weight: bold;
           color: var(--deep-space-blue);
         }
+
         .temperature {
-          font-size: 1.5rem;
+          font-size: 1rem;
           font-weight: bold;
-          color: var(--tiger-orange);
+          color: #ac4501;
         }
       }
     }
@@ -365,6 +360,196 @@ CATEGORIES / WIDGETS SECTION
       margin-top: 3rem; /* Pushing the middle card downward */
     }
   }
+}
+
+/* ======================================
+   PRODUCTS TABLE & INVENTORY STYLES
+   ====================================== */
+.products-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-count {
+  color: #ac4501;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.inventory-summary-bar {
+  display: flex;
+  gap: 1.5rem;
+  background-color: var(--white);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+  font-size: 1rem;
+}
+
+.inventory-summary-bar strong {
+  color: var(--tiger-orange);
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Handles horizontal scrolling on smaller screens */
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.data-table caption {
+  padding: 1rem;
+  font-weight: bold;
+  color: var(--deep-space-blue);
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e1e5e5;
+  vertical-align: middle;
+}
+
+.data-table th {
+  background-color: var(--deep-space-blue);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f9fbfb;
+}
+
+.table-thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e1e5e5;
+}
+
+.table-summary-row {
+  background-color: var(--platinum);
+  font-weight: bold;
+  color: var(--deep-space-blue);
+}
+
+/* ALERT BELL BADGE & MODAL DIALOG */
+.widget-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bell-wrapper {
+  position: relative; /* CRUCIAL: This makes the badge attach to THIS div, not the whole card */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; /* Fixes point #2: Adds the clickable hand cursor */
+  padding: 5px;
+  transition: transform var(--transition-speed);
+}
+
+.bell-wrapper:hover {
+  transform: scale(1.1); /* Adds a nice bounce effect when hovering */
+}
+
+.bell-wrapper img {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.alert-badge {
+  position: absolute;
+  top: -2px; /* Pulling the badge slightly above the bell */
+  right: -2px; /* Pulling the badge slightly to the right of the bell */
+  background-color: #e74c3c;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.alert-badge.hidden {
+  display: none !important;
+}
+
+/* Dialog Backdrop and Window */
+.custom-modal {
+  border: none;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 450px;
+  width: 90%;
+  margin: auto;
+}
+
+.custom-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  padding: 1.5rem;
+  background-color: var(--white);
+}
+
+.modal-content h3 {
+  color: var(--deep-space-blue);
+  margin-bottom: 1rem;
+}
+
+.modal-list {
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+}
+
+.modal-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.9rem;
+  color: var(--graphite);
+}
+
+.modal-close-btn {
+  background-color: var(--tiger-orange);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-close-btn:hover {
+  background-color: #d35400;
 }
 
 /* ============================
@@ -606,7 +791,7 @@ SITEPLAN PAGE STYLING
 /* ================================
   MOBILE RESPONSIVENESS
 ================================= */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   #app-container {
     grid-template-areas:
       "header"
@@ -680,6 +865,88 @@ SITEPLAN PAGE STYLING
     .widget-card {
       width: 100%; /* Ensures cards take full width on mobile */
     }
+  }
+
+  /* Adjust the dialog modal for small mobile screens */
+  .custom-modal {
+    width: 95%;
+    max-width: none;
+    margin: 1rem auto;
+  }
+
+  .modal-content {
+    padding: 1rem;
+  }
+
+  /* Product Page Table Adjustment */
+  .table-container {
+    background: transparent;
+    box-shadow: none;
+    overflow-x: hidden;
+  }
+
+  /* Forcing the table, rows, and cells 
+  to behave like standard block elements */
+  .data-table,
+  .data-table tbody,
+  .data-table tr,
+  .data-table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* Hiding the top table headers visually, 
+  but keeping them in the DOM for screen readers */
+  .data-table thead {
+    display: none;
+  }
+
+  /* Style each table row as a standalone card */
+  .data-table tr {
+    margin-bottom: 1.5rem;
+    border: 1px solid #e1e5e5;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    background-color: var(--white);
+    padding: 1rem;
+  }
+
+  /* Styling each cell as a flex row with 
+  the label on the left and data on the right */
+  .data-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 0.75rem 0;
+    text-align: right;
+  }
+
+  /* Removing the border from 
+  the last item in the card */
+  .data-table td:last-child {
+    border-bottom: none;
+  }
+
+  /* Magically insert the column headers
+  as labels using the data-label attribute */
+  .data-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--deep-space-blue);
+    text-align: left;
+    flex: 1;
+    padding-right: 1rem; /* Ensuring long labels don't crash into the data */
+  }
+
+  /* Adjusting the summary footer row 
+  to look like a highlighted block */
+  .data-table tfoot .table-summary-row td::before {
+    display: none; /* Hide labels for the summary */
+  }
+  .data-table tfoot .table-summary-row td {
+    justify-content: center;
+    text-align: center;
   }
 
   /* Footer adjustments */

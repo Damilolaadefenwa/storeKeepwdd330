@@ -1,9 +1,26 @@
-//1. save data to local storage
+//This file contains the generic fetch function and local storage helpers.
+
+//1. Generic External Data Service (Render Proxy Fetcher)
+const PROXY_BASE_URL = "https://storekeepproxy-wdd330.onrender.com";
+
+export async function fetchExternalData(endpoint) {
+  try {
+    const response = await fetch(`${PROXY_BASE_URL}${endpoint}`);
+    if (!response.ok) {
+      throw new Error(`Server response error: ${response.status}`);
+    }
+    return await response.text(); //raw response text
+  } catch (error) {
+    return null;
+  }
+}
+
+//2. save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
-//2. retrieve data from localstorage
+//3. retrieve data from localstorage
 export function getLocalStorage(key) {
   const data = localStorage.getItem(key);
   try {
@@ -14,7 +31,7 @@ export function getLocalStorage(key) {
   }
 }
 
-//3.Fetching HTML template data
+//4.Fetching HTML template data
 export async function loadTemplate(path) {
   try {
     const response = await fetch(path);
@@ -28,20 +45,20 @@ export async function loadTemplate(path) {
   }
 }
 
-//4.Rendering Template
+//5.Rendering Template
 export function renderWithTemplate(template, parentElement, data, callback) {
-  parentElement.innerHTML = template;
-  if (callback) {
-    callback(data);
+  if (parentElement) {
+    parentElement.innerHTML = template;
+    if (callback) callback(data);
   }
 }
 
-//5.Dynamic Header and Footer.
+//6.Dynamic Header and Footer.
 export async function loadHeaderFooter() {
   // Grabbing the dynamic base URL from Vite
   const baseUrl = import.meta.env.BASE_URL;
 
-  // Create the paths and use .replace to ensure we never have a double-slash like "//partials"
+  //Creating the paths and using .replace to solve the issue of having a double-slash like "//partials"
   const headerPath = `${baseUrl}partials/header.html`.replace("//", "/");
   const footerPath = `${baseUrl}partials/footer.html`.replace("//", "/");
 
@@ -60,7 +77,7 @@ export async function loadHeaderFooter() {
   }
 }
 
-// 6. Dynamic Dates Function
+// 7. Dynamic Dates Function
 export function setDynamicDates() {
   // Setting copyright year in footer
   const copyrightYearSpan = document.getElementById("current-year");
@@ -80,7 +97,7 @@ export function setDynamicDates() {
   }
 }
 
-// 7. Mobile Menu Toggle
+// 8. Mobile Menu Toggle
 export function setupMobileMenu() {
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
   const sidebar = document.getElementById("main-sidebar");
